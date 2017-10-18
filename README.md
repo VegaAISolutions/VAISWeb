@@ -48,3 +48,9 @@ docker build -t vaisw:latest .
 ```
 docker run -d -p 1900:1900 vaisw
 ```
+you can see the container running
+```
+$ docker ps -a
+CONTAINER ID        IMAGE                              COMMAND                CREATED             STATUS                             PORTS                    NAMES
+92fb4d65c7cd        vaisw:latest            "python VegaWeb.py"        22 minutes ago      Up 22 minutes                      0.0.0.0:1900->1900/tcp   clever_blackwell
+```
