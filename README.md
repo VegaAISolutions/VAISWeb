@@ -40,5 +40,11 @@ http://127.0.0.1:1900
 ```
 
 ## Deployment
+Using Docker to deploy on a remote port  (default 1900)
 
-Docker deployment will be added soon
+```
+docker build -t vaisw:latest .
+```
+```
+docker run -d -p 1900:1900 vaisw
+```
