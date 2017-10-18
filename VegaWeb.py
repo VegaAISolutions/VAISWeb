@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
+# from models import User //to be used later
 
 app = Flask(__name__)
 
