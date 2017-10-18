@@ -1,8 +1,12 @@
 from flask import Flask
+from flask import render_template
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-from flask import render_template
-# from mandrill import drill
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
+db = SQLAlchemy(app)
+
 
 @app.route('/')
 def index():
