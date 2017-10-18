@@ -48,6 +48,10 @@ docker build -t vaisw:latest .
 ```
 docker run -d -p 1900:1900 vaisw
 ```
+Running on the native http port
+```
+docker run -d -p 80:1900 vaisw
+```
 you can see the container running
 ```
 $ docker ps -a
