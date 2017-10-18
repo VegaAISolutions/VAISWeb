@@ -12,11 +12,14 @@ See deployment for notes on how to deploy the project on a live system. Note thi
 ```
 pyhon3, pip, sqlAlchemy, Flask, JinJa, sqlite3
 ```
+to install prerequisites on ubuntu:
 ```
 apt-get update -y
 apt-get install -y python3-pip python3-setuptools python3 build-essential sqlite3 libsqlite3-dev
 easy_install3 pip
 ```
+Sorry windows user, docker up
+
 
 ### Installing
 
