@@ -29,7 +29,7 @@ pip install -r requirements.txt
 
 ## Running the app
 
-Explain how to run the automated tests for this system
+Running is one command
 
 ```
 python VegaWeb.py
