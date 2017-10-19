@@ -417,7 +417,7 @@ body {
 
 /* ------ 7 service part start ------ */
 #service {
-	padding: 105px 0px 79px;
+	padding: 40px 0px 79px;
 	background: #f8f8f8;
 }
 
@@ -1275,7 +1275,7 @@ iframe {
 
 /* ------ 15 blog start ------ */
 #our_blog {
-	padding: 100px 0px 100px;
+	padding: 100px 0px 10px;
 	background: #fff;
 }
 .blog_containre {
