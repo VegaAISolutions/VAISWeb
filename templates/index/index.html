@@ -43,7 +43,7 @@
                                 </ul>
                                 <h3>{{ x.title | truncate(35) }}</h3>
                                 <p>{{ strip_tags(x.description) | truncate(150) }}</p>
-                                <button href="{{ x.link }}">More</button>
+                                <button><a href="{{ x.link }}"></a>More</button>
                             </div>
                         </div>
                     </div>
