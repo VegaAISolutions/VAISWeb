@@ -65,7 +65,6 @@ var giter = $(window);
 	$('.team_slide').owlCarousel({
     loop:true,
     margin:10,
-	nav:false,
 	autoplay:false,
 	autoplayHoverPause:true,
 	autoplayTimeout:7000,
