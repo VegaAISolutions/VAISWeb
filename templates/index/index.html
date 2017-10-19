@@ -35,13 +35,13 @@
                     <div class="singal_blog">
                         <div class="blog_item">
                             <div class="blog_img">
-                                <img class="img-responsive" src="{{ x.image }}" alt="blog">
+                                <img class="img-responsive" src="/static/assets/img/blog/1.jpg" alt="blog">
                             </div>
                             <div class="blog_info text-center">
                                 <ul>
                                     <li><i class="fa fa-calendar blog_icon" aria-hidden="true"></i>{{ x.published }}</li>
                                 </ul>
-                                <h3>{{ x.title }}</h3>
+                                <h3>{{ x.title | truncate(35) }}</h3>
                                 <p>{{ strip_tags(x.description) | truncate(150) }}</p>
                                 <button href="{{ x.link }}">More</button>
                             </div>
