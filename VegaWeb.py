@@ -37,12 +37,13 @@ db = SQLAlchemy(app)
 db.create_all()
 
 
-d = feedparser.parse('https://medium.com/feed/@VegaAISolutions')
+medium = feedparser.parse('https://medium.com/feed/@VegaAISolutions')
+twitter = feedparser.parse('https://twitrss.me/twitter_user_to_rss/?user=VegaAISolutions')
 
 
 @app.route('/')
 def index():
-    output = render_template('index/index.html', rss=d, strip_tags=strip_tags)
+    output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
     return output
 
 app.run(debug=True,host='0.0.0.0',port=1900,threaded=True)
