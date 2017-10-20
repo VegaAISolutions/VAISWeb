@@ -1,0 +1,334 @@
+
+{% extends "index/layout.html" %}
+{% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="banar_text">
+                        <h2>Vega Automated</h2>
+                        <h1>Intelligent Solutions</h1>
+                        <h3>Experience the future of AI</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos, debitis!</p>
+                        <a href="#">learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== banar slide end here ====== -->
+        <!-- ====== start brand slide here ====== -->
+    <!-- ====== end brand slide here ====== -->
+        <!-- ====== blog start here ====== -->
+    <section id="our_blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section_title">
+                        <h3>latest news</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="blog_containre owl-carousel">
+                       {% for x in medium.entries %}
+                    <div class="singal_blog">
+                        <div class="blog_item">
+                            <div class="blog_img">
+                                <img class="img-responsive" src="/static/assets/img/blog/1.jpg" alt="blog">
+                            </div>
+                            <div class="blog_info text-center">
+                                <ul>
+                                    <li><i class="fa fa-calendar blog_icon" aria-hidden="true"></i>{{ x.published }}</li>
+                                </ul>
+                                <h3>{{ x.title | truncate(35) }}</h3>
+                                <p>{{ strip_tags(x.description) | truncate(150) }}</p>
+                                <button><a href="{{ x.link }}" style="color: white">More</a></button>
+                            </div>
+                        </div>
+                    </div>
+                     {% endfor %}
+                   {% for x in twitter.entries %}
+                    <div class="singal_blog">
+                        <div class="blog_item">
+                            <div class="blog_img">
+                                <img class="img-responsive" src="/static/assets/img/blog/2.jpg" alt="blog">
+                            </div>
+                            <div class="blog_info text-center">
+                                <ul>
+                                    <li><i class="fa fa-calendar blog_icon" aria-hidden="true"></i>{{ x.published }}</li>
+                                </ul>
+                                <h3>{{ x.title | truncate(35) }}</h3>
+                                <p>{{ strip_tags(x.description) | truncate(150) }}</p>
+                                <button><a href="{{ x.link }}" style="color: white">More</a></button>
+                            </div>
+                        </div>
+                    </div>
+                     {% endfor %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- ====== blog end here ====== -->
+    <!-- ====== service start here ====== -->
+    <section id="service">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section_title">
+                        <h3>Features</h3>
+                    </div>
+                    <div class="service_container">
+                       <!-- singal service -->
+                        <div class="col-md-4 col-xs-12 col-sm-6">
+                            <div class="service_item text-center">
+                                <i class="fa fa-html5" aria-hidden="true"></i>
+                                <h3>Web based Design</h3>
+                                <p>Lorem ipsum dolor sit amet, augue theophrastus ex</p>
+                            </div>
+                        </div>
+                        <!-- singal service -->
+                        <div class="col-md-4 col-xs-12 col-sm-6">
+                            <div class="service_item text-center">
+                                <i class="fa fa-css3" aria-hidden="true"></i>
+                                <h3>Automated Trading</h3>
+                                <p>Lorem ipsum dolor sit amet, augue theophrastus ex</p>
+                            </div>
+                        </div>
+                        <!-- singal service -->
+                        <div class="col-md-4 col-xs-12 col-sm-6">
+                            <div class="service_item text-center si_p">
+                                <i class="fa fa-codepen" aria-hidden="true"></i>
+                                <h3>Interactive AI</h3>
+                                <p>Lorem ipsum dolor sit amet, augue theophrastus ex</p>
+                            </div>
+                        </div>
+                        <!-- singal service -->
+                        <div class="col-md-4 col-xs-12 col-sm-6">
+                            <div class="service_item text-center si_p">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                <h3>Social Media Integrated</h3>
+                                <p>Lorem ipsum dolor sit amet, augue theophrastus ex</p>
+                            </div>
+                        </div>
+                        <!-- singal service -->
+                        <div class="col-md-4 col-xs-12 col-sm-6">
+                            <div class="service_item text-center si_p">
+                                <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                                <h3>Mobile first interface</h3>
+                                <p>Lorem ipsum dolor sit amet, augue theophrastus ex</p>
+                            </div>
+                        </div>
+                        <!-- singal service -->
+                        <div class="col-md-4 col-xs-12 col-sm-6">
+                            <div class="service_item text-center si_p">
+                                <i class="fa fa-bug" aria-hidden="true"></i>
+                                <h3>Open-source development</h3>
+                                <p>Lorem ipsum dolor sit amet, augue theophrastus ex</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== service end here ====== -->
+        <!-- ====== video strart here ====== -->
+    <section id="our_video">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="video_container">
+                        <h3>Check out our video!</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam,</p>
+                        <a class="bla-1" href="https://youtu.be/b1WWpKEPdT4">
+			                <i class="fa fa-play-circle video_paly" aria-hidden="true"></i>
+		                </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== video end here ====== -->
+
+    <!-- ====== about us start here ====== -->
+    <section id="about_us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="about_image">
+                        <img class="img-responsive" src="https://cdn-images-1.medium.com/max/800/1*jwP8ZDrSKeu-AbypVe-T_A.jpeg" alt="about_us">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="about_content">
+                        <h2 class="section-title"> Our technology <br> can change the world </h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, asperiores, expedita. Qui, explicabo temporibus! Atque ab commodi corporis labore iure doloribus amet ducimus, <span>laudantium in placeat asperiores animi. Perferendis laudantium error cupiditate pariatur ratione tempore, facere, assumenda maiores labore obcaecati repellendus possimus eum ipsa minima excepturi libero quam beatae! Id.</span></p>
+                        <button>see more</button>
+                        <img class="img-responsive" src="/static/assets/img/signature.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== about us end here ====== -->
+
+    <!-- ====== team start here ====== -->
+    <section id="our_team">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section_title">
+                        <h3>our team</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="team_container col-sm-12 col-lg-12" >
+                <div class="row">
+                    <div align="center" class="team_blurb">
+                        <h3>Lorem ipsum dolor sit amet,</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam</p>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12"></div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="singal_team">
+                            <img class="img-responsive" src="/static/assets/img/team/1.jpg" alt="">
+                            <div class="team-hover">
+                               <div class="team_info_text">
+                                   <h3> consectetur adipisicing elit. Qui veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam </h3>
+                                   <p>ceo / architect</p>
+                                </div>
+                                <div class="team_social">
+                                    <div class="social_item">
+
+                                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team_member_title">
+                                <h5>ceo</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="singal_team">
+                            <img class="img-responsive" src="/static/assets/img/team/2.jpg" alt="">
+                            <div class="team-hover">
+                               <div class="team_info_text">
+                                   <h3> consectetur adipisicing elit. Qui veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam</h3>
+                                   <p>ux/ui designer</p>
+                                </div>
+                                <div class="team_social">
+                                    <div class="social_item">
+                                        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team_member_title">
+                                <h5>Developer</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+               <div align="center" class="team_blurb">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui veniam</p>
+                    </div>
+    </section>
+    <!-- ====== team end here ====== -->
+
+    <!-- ====== start contact here ====== -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section_title">
+                        <h3>contact us</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="contact_input">
+                            <form>
+                                <input type="text" class="fname" name="fname" placeholder="First Name">
+                                <input type="text" class="lname" name="lname" placeholder="Last Name">
+                                <input type="text" class="email" name="email" placeholder="Email Address">
+                                <input type="text" class="phone" name="phone" placeholder="Phone Number">
+                                <textarea class="message" placeholder="Leave Your Message"></textarea>
+                                <button type="submit">submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="contact_info">
+                            <div class="row">
+                                <div class="contact_right_item">
+                                    <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-9 nopading">
+                                            <div class="con_info">
+                                                <h3>Office Address</h3>
+                                                <p>Head office - 42/1 Green road, USA,London</p>
+                                                <p>Sub office - 42/1 Green road, USA,London</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 nopading">
+                                            <div class="con_i">
+                                                <i class="fa fa-home" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-9 nopading">
+                                            <div class="con_info">
+                                                <h3>Email</h3>
+                                                <p>example@gmail.com</p>
+                                                <p>demo@domo.com</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 nopading">
+                                            <div class="con_i">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-9 nopading">
+                                            <div class="con_info">
+                                                <h3>Phone</h3>
+                                                <p>++00118746574875</p>
+                                                <p>++00118746574875</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 nopading">
+                                            <div class="con_i">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== end contact here ====== -->
+    <!-- ====== start footer top here ====== -->
+{% endblock %}
