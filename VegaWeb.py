@@ -46,4 +46,9 @@ def index():
     output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
     return output
 
+@app.route('/crowdfund')
+def crowdfund():
+    output = render_template('crowdfund/index.html')
+    return output
+
 app.run(debug=True,host='0.0.0.0',port=1900,threaded=True)
