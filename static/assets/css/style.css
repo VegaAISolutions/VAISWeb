@@ -14,7 +14,7 @@
     4 main menu start
     5 banar part
     6 about_us part start
-    7 service part start
+    7 features part start
     8 portfolio part start
     9 percess part start
     10 team part start
@@ -415,17 +415,17 @@ body {
 /* ------ 6 about_us part end ------ */
 
 
-/* ------ 7 service part start ------ */
-#service {
+/* ------ 7 features part start ------ */
+#features {
 	padding: 40px 0px 79px;
 	background: #f8f8f8;
 }
 
-.service_container {
+.features_container {
     padding: 50px 0px;
 }
 
-.service_item {
+.features_item {
 	background: #fff;
 	padding: 29px 18px;
 	box-shadow: 0 0 30px rgba(64, 64, 64, .1);
@@ -433,33 +433,33 @@ body {
 	margin-bottom: 29px;
 }
 
-.service_item:hover h3{
+.features_item:hover h3{
     color: #2c9da5;
 }
 
-.service_item:hover .fa{
+.features_item:hover .fa{
     color: #222;
 }
 
-.service_item .fa {
+.features_item .fa {
     font-size: 21px;
     color: #2c9da5;
     padding-bottom: 23px;
     transition: all 0.3s linear;
 }
 
-.service_item:hover {
+.features_item:hover {
     box-shadow: none;
 }
 
-.service_item h3 {
+.features_item h3 {
     text-transform: uppercase;
     font-size: 17px;
     color: #222;
     transition: all 0.3s linear;
 }
 
-.service_item p {
+.features_item p {
     margin: 0px;
     color: #767676;
     line-height: 22px;
@@ -467,7 +467,7 @@ body {
 }
 
 
-/* ------ 7 service part end ------ */
+/* ------ 7 features part end ------ */
 
 
 /* ------ 8 portfolio part start ------ */
@@ -1884,3 +1884,109 @@ iframe {
     left: 100%;
 }
 /* ------ 22 preloader style end here ------ */
+
+/* ------ brian wasnted a fucking button -----*/
+
+.features_section a {
+	background: #2c9da5 none repeat scroll 0 0;
+	border-radius: 3px;
+	border-style: none;
+	color: #fff;
+	font-weight: 700;
+	padding: 11px 46px;
+	position: relative;
+	transition: all 0.3s linear 0s;
+	text-transform: uppercase;
+	z-index: 1;
+	z-index: 1;
+	overflow: hidden;
+}
+
+
+
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 70px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
