@@ -78,3 +78,18 @@ $ docker ps -a
 CONTAINER ID        IMAGE                              COMMAND                CREATED             STATUS                             PORTS                    NAMES
 92fb4d65c7cd        vaisw:latest            "python VegaWeb.py"        22 minutes ago      Up 22 minutes                      0.0.0.0:1900->1900/tcp   clever_blackwell
 ```
+
+## Updating
+
+Updating is as simple as running the provided scripts, they can be run as such:
+
+```
+sh update.sh
+```
+or if your deploying with docker via port 80
+```
+sh update-docker.sh
+```
+
+Note: these coud probabably be used as a first time deployment method too (untested)
+
