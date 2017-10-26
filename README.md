@@ -21,6 +21,17 @@ easy_install3 pip
 Sorry windows user, this can be run by installing the software manually - for easiest experience, docker up.
 
 
+### Docker Prerequisites
+
+```
+sudo -s
+apt-get -y install docker.io
+ln -sf /usr/bin/docker.io /usr/local/bin/docker
+sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+update-rc.d docker.io defaults
+```
+
+
 ### Installing
 
 Installing is easy assuming you have python3 and pip installed:
