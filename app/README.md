@@ -21,6 +21,18 @@ easy_install3 pip
 Sorry windows user, this can be run by installing the software manually - for easiest experience, docker up.
 
 
+### Docker Prerequisites
+
+```
+sudo -s
+apt-get update -y
+apt-get -y install docker.io
+ln -sf /usr/bin/docker.io /usr/local/bin/docker
+sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+update-rc.d docker.io defaults
+```
+
+
 ### Installing
 
 Installing is easy assuming you have python3 and pip installed:
@@ -66,3 +78,18 @@ $ docker ps -a
 CONTAINER ID        IMAGE                              COMMAND                CREATED             STATUS                             PORTS                    NAMES
 92fb4d65c7cd        vaisw:latest            "python VegaWeb.py"        22 minutes ago      Up 22 minutes                      0.0.0.0:1900->1900/tcp   clever_blackwell
 ```
+
+## Updating
+
+Updating is as simple as running the provided scripts, they can be run as such:
+
+```
+sh update.sh
+```
+or if your deploying with docker via port 80
+```
+sh update-docker.sh
+```
+
+Note: these coud probabably be used as a first time deployment method too (untested)
+

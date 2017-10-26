@@ -5,5 +5,5 @@ RUN easy_install3 pip
 COPY . /app
 WORKDIR /app
 RUN pip3 install -r requirements.txt
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python3"]
 CMD ["VegaWeb.py"]
