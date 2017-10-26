@@ -25,6 +25,7 @@ Sorry windows user, this can be run by installing the software manually - for ea
 
 ```
 sudo -s
+apt-get update -y
 apt-get -y install docker.io
 ln -sf /usr/bin/docker.io /usr/local/bin/docker
 sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
