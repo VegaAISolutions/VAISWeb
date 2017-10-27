@@ -33,6 +33,7 @@ def strip_tags(html):
 medium = feedparser.parse('https://medium.com/feed/@VegaAISolutions')
 twitter = feedparser.parse('https://twitrss.me/twitter_user_to_rss/?user=VegaAISolutions')
 
+
 def email(text):
     mailgun.MailgunApi('vegais.com', '2e5bf1dda730f83f65727d0163c4b6b7')
     mailgun.MailgunApi.send_email(text)
