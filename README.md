@@ -39,7 +39,7 @@ Installing is easy assuming you have python3 and pip installed:
 
 ```
 git clone https://github.com/slapglif/VAISWeb.git
-cd VAISWeb/app
+cd VAISWeb
 ```
 ```
 pip install -r requirements.txt
@@ -50,7 +50,7 @@ pip install -r requirements.txt
 Running is one command
 
 ```
-python3 VegaWeb.py
+python3 app/VegaWeb.py
 ```
 
 Once it's running, you can browse to the test port
