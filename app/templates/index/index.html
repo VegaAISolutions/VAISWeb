@@ -44,7 +44,7 @@
                                 </ul>
                                 <h3>{{ x.title | truncate(35) }}</h3>
                                 <p>{{ strip_tags(x.description) | truncate(150) }}</p>
-                                <button><a href="{{ x.link }}" style="color: white">More</a></button>
+                                <button><a href="{{ x.link }}" style="color: white" target="_blank">More</a></button>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                 </ul>
                                 <h3>{{ x.title | truncate(35) }}</h3>
                                 <p>{{ strip_tags(x.description) | truncate(150) }}</p>
-                                <button><a href="{{ x.link }}" style="color: white">More</a></button>
+                                <button><a href="{{ x.link }}" style="color: white"  target="_blank">More</a></button>
                             </div>
                         </div>
                     </div>
@@ -165,9 +165,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="about_image">
+                    <div class="roadmap">
 
-                        <img   id="myImg2" class="img-responsive thumb2" src="/static/assets/img/Road_Map.png" alt="about_us">
+                        <img class="img-responsive" src="/static/assets/img/Road_Map.png" alt="roadmap">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -175,7 +175,7 @@
                         <h2 class="section-title"> Our roadmap </h2>
                         <p>We are always hard at work on development and media campaigns to generate visibility and keep our users updated frequently on progress.<span> We are developing using Agile strategies and test-driven development on our application. Using this approach we are able to work internally very efficiently and create market awareness with fast-paced feature release deployments to our users.</span></p>
                           <!-- Trigger the Modal -->
-                        <button  align="center" id="rbutton">see more</button>
+                        <button onclick="changeZIndex(1,'m1')" data-toggle="modal" data-target="#m1" align="center">see more</button>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="about_image">
 
-                        <img   id="myImg1" class="img-responsive thumb1" src="/static/assets/img/Vega_Design.png" alt="about_us">
+                        <img class="img-responsive" src="/static/assets/img/Vega_Design.png" alt="about_us">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -197,7 +197,7 @@
                         <h2 class="section-title"> Our technology <br> can change the world </h2>
                         <p>We here at Vega Intelligent Solutions are dedicated to quality of service in our products to create the greatest user experience.<span> Our ongoing development of the Vega application has inspired confidence created many possibilities to integrate across platforms and work with simple solutions that machine learning can leverage productivity in our every day lives. As users of the latest technologies and investors ourselves, we understand the importance to uphold our integrity and work towards changing the world of investment tools and portfolio management utilities.</span></p>
                           <!-- Trigger the Modal -->
-                        <button  id="mbutton">see more</button>
+                        <button onclick="changeZIndex(1,'m2')" data-toggle="modal" data-target="#m2">see more</button>
                         <img class="img-responsive" src="/static/assets/img/signaturebcs.png" alt="">
                     </div>
                 </div>
@@ -206,16 +206,39 @@
     </section>
 
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <!-- The Modals -->
+    <div class="modal fade" id="m1" style="padding-right: 400px; z-index: -1 !important">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="false">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <div class="roadmap container-fluid">
 
-        <!-- The Close Button -->
-        <span class="close">&times;</span>
-
-        <!-- Modal Content (The Image) -->
-        <img class="modal-content" id="img01">
-
+                        <img class="img-responsive" src="/static/assets/img/Road_Map.png"  style="max-width:200%; !important" alt="roadmap">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="modal fade" id="m2" style="padding-right: 400px; z-index: -1 !important">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <div class="about_image container-fluid">
+
+                        <img class="" src="/static/assets/img/Vega_Design.png" alt="about_us" style="max-width:200%; !important">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- ====== about us end here ====== -->
 

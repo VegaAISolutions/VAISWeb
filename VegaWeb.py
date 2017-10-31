@@ -8,8 +8,6 @@ from app import models
 from app.models import db
 
 
-
-
 class MLStripper(HTMLParser):
     def __init__(self):
         self.reset()

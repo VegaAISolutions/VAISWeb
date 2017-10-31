@@ -215,3 +215,11 @@ var giter = $(window);
         $("#preloader").addClass('out');
     });	
 })(jQuery);
+
+
+/*-----------------------------
+onclick z index function
+------------------------------- */
+function changeZIndex(i,id) {
+  document.getElementById(id).style.zIndex=i;
+}
