@@ -15,7 +15,7 @@ pyhon3, pip, sqlAlchemy, Flask, JinJa, sqlite3
 to install prerequisites on ubuntu:
 ```
 apt-get update -y
-apt-get install -y python3-pip python3-setuptools python3 build-essential sqlite3 libsqlite3-dev
+apt-get install -y python3-pip python3-setuptools python3 build-essential sqlite3 libsqlite3-dev, psmisc, screen, htop, dstat
 easy_install3 pip
 ```
 Sorry windows user, this can be run by installing the software manually - for easiest experience, docker up.
