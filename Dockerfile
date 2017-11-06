@@ -5,6 +5,7 @@ RUN easy_install3 pip
 COPY . /app
 WORKDIR /app/app
 RUN pip3 install -r requirements.txt
+RUN export TERM=xterm
 WORKDIR /app
 ENTRYPOINT ["python3"]
 CMD ["VegaWeb.py"]
