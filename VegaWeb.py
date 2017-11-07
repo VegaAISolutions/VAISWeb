@@ -222,4 +222,10 @@ def join():
     output = render_template('crowdfund/join.html',ethaddy=sauce)
     return output
 
+@app.route('/thankyou')
+def thankyou():
+    output = render_template('crowdfund/thankyou.html')
+    return output
+
+
 app.run(debug=True,host='0.0.0.0',port=1900,threaded=True)
