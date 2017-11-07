@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- ====== custom css ====== -->
+<link rel="stylesheet" href="/static/assets/css/lognreg.css">
+
+<div id="fullscreen_bg" class="fullscreen_bg"/>
+
+<div class="container">
+
+	<form class="form-signin">
+		<h1 class="form-signin-heading text-muted">Sign In</h1>
+		<input type="text" name="email-login" id="email-login" class="form-control" placeholder="Email address" required="" autofocus="">
+		<input type="password" name="password-login" id="password-login" class="form-control" placeholder="Password" required="">
+		<a href="/login" class="btn btn-lg btn-primary btn-block">
+			Sign In
+		</a>
+	</form>
+    <div align="center" ><a href="/register" class="btn btn-info">Don't have an account?</a></div>
+
+</div>
+
+{% endblock %}

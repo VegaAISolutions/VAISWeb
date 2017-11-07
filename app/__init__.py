@@ -1,45 +1,34 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
-from pandas import DataFrame, Series
+
 app = Flask(__name__)
 
-
-class CustomSeries(Series):
-    @property
-    def _constructor(self):
-        return CustomSeries
-
-    def custom_series_function(self):
-        return 'OK'
-class CustomDataFrame(DataFrame):
-    """
-    Subclasses pandas DF, fills DF with simulation results, adds some
-    custom plotting functions.
-    """
-
-    def __init__(self, *args, **kw):
-        super(CustomDataFrame, self).__init__(*args, **kw)
-
-    @property
-    def _constructor(self):
-        return CustomDataFrame
-
-    _constructor_sliced = CustomSeries
-
-    def custom_frame_function(self):
-        return 'OK'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 0
 
 
+db = SQLAlchemy(app)
+engine = create_engine("sqlite:///VegaWeb.db")
+db_session = scoped_session(sessionmaker(autocommit=True,autoflush=False,bind=engine))
+db.init_app(app)
+db.create_all()
+Base = declarative_base()
+Base.query = db_session.query_property()
+from app.models import Crowdfund
 
-sql_engine = create_engine('sqlite:///test.db', echo=False)
-connection = sql_engine.raw_connection()
-#df = CustomDataFrame.to_sql('data', 'sql_engine',index=False, if_exists='append')
-from app.models import db, User
+def init_db():
+    import app.models
+    Base.metadata.create_all(bind=engine)
 
+init_db()
+
+BCRYPT_LOG_ROUNDS = 12
 bcrypt = Bcrypt(app)
-
 
 
 login_manager = LoginManager()
@@ -49,4 +38,4 @@ login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(userid):
-    return User.query.filter(db.id == userid).first()
+    return Crowdfund.query.filter(Crowdfund.id == userid).first()

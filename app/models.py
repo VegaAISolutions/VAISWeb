@@ -1,30 +1,58 @@
-from sqlalchemy import Column, Integer, String, Boolean
+
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from app import app
-
-db = SQLAlchemy(app)
-
-db_session = scoped_session(sessionmaker(autocommit=True,autoflush=False,bind=db))
-#Base = declarative_base()
-#Base.query = db_session.query_property()
+from flask_login import LoginManager, UserMixin
+from app import db_session,Base,app,db
+from sqlalchemy import Column, Integer, String, Boolean, BLOB
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.sql.expression import Executable, ClauseElement
+import flask_bcrypt as bcrypt
 
 
-class User(db.Model):
+class User(Base):
     __tablename__ = 'user'
-    user_id = Column(Integer, primary_key=True)
-    email = Column(String(80))
-    fname = Column(String(80))
-    lname = Column(String(80))
-    msg = Column(String(300))
-    email_confirmed = Boolean(0)
+    id = Column(Integer, primary_key=True)
+    email = Column(String(80), nullable=True)
+    fname = Column(String(80), nullable=True)
+    lname = Column(String(80), nullable=True)
+    msg = Column(String(300), nullable=True)
 
     def __repr__(self):
         """docstring for __repr__"""
-        return self.email
+        return self.id
 
 
-with app.app_context():
-    db.init_app(app)
-    db.create_all()
+class Crowdfund(UserMixin,Base):
+    __tablename__ = 'cf'
+    id = Column(Integer, primary_key=True)
+    email = Column(String(80), nullable=True)
+    email_confirmed = Column(Boolean(0), nullable=True)
+    _password = Column(String(128), nullable=True)
+
+    def __repr__(self):
+        """docstring for __repr__"""
+        return self.id
+
+
+
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def _set_password(self, plaintext):
+        self._password = bcrypt.generate_password_hash(plaintext)
+
+    def is_correct_password(self, plaintext):
+        return bcrypt.check_password_hash(self._password.encode('utf-8'), plaintext)
+
+    @staticmethod
+    def get_or_create(session, model, defaults=None, **kwargs):
+        instance = session.query(model).filter_by(**kwargs).first()
+        if instance:
+            return instance
+        else:
+            params = dict((k, v) for k, v in kwargs.iteritems() if not isinstance(v, ClauseElement))
+            if defaults:
+                params.update(defaults)
+            instance = model(**params)
+            return instance

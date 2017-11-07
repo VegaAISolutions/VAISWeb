@@ -1,28 +1,49 @@
 from app import app
 import feedparser
 from html.parser import HTMLParser
-from app.models import db, db_session, User
-from flask import Flask, redirect, url_for, render_template, flash, request, session, g
-from flask_login import LoginManager, login_user, logout_user, current_user
+from app import db_session, db
+from app.models import User, Crowdfund
+from flask import redirect, url_for, render_template, request, session, g
+from flask_login import login_user, logout_user, current_user
 from itsdangerous import URLSafeTimedSerializer
-from subprocess import PIPE, Popen
+from flask_login import LoginManager
+import requests
+
+
+
+### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
+msg = None
+### Password Salt Key ###
 ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
-
-## Useful if you need to access os cmd's ##
-def cmd(command):
-  return Popen(command, shell=True, stdout=PIPE)
-
-def email(msg):
-    cmd("curl -s --user 'api:2e5bf1dda730f83f65727d0163c4b6b7'"
-        "\ https://api.mailgun.net/v3/vegais.com/messages "
-        "\ -F from='noreply <noreply@vegais.com>' "
-        "\ -F to=cryptsmith@gmail.com "
-        "\ -F subject='Hello' "
-        "\ -F text=" + msg + "")
+#### MailGun Key ####
+api_key = 'key-5c140fd81223a56d283edc025a523a0e'
 
 
+
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = User.query.get(session['user_id'])
+
+
+@app.after_request
+def after_request(response):
+    db_session.remove()
+    return response
+
+
+lm = LoginManager(app)
+
+@lm.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+
+        #its a lie, this method IS abstracted
 class MLStripper(HTMLParser):
     def __init__(self):
         self.reset()
@@ -47,30 +68,47 @@ medium = feedparser.parse('https://medium.com/feed/@VegaAISolutions')
 twitter = feedparser.parse('https://twitrss.me/twitter_user_to_rss/?user=VegaAISolutions')
 
 
+def send(msg,subject,to):
+    if msg is not None:
+        payload = {'from': 'noreply <noreply@vegais.com>', 'to': to, 'subject': subject,
+                   "text": strip_tags(msg)}
+        ## kuro's ghetto auth and curl ##
+        r1 = requests.get('https://api:' + api_key + '@api.mailgun.net/v3/samples.mailgun.org/log')
+        r2 = requests.post("https://api:" + api_key + "@api.mailgun.net/v3/m.vegais.com/messages",params=payload)
+        print(r2.text, r2.url)
+    return print(r2.status_code)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    if "@" not in request.url:
+        if request.form.get('email') is not None:
+            #try:
+            usr = User(email=request.form.get('email'), lname=request.form.get('lname'), fname=request.form.get('fname'),msg=request.form.get('message'))
+            em = request.form.get("email")
+            exists = User.query.filter_by(email=em).first()
+            if exists == None:
+                db_session.add(usr)
+                db_session.commit()
+            else:
+                db_session.merge(usr)
+                db_session.commit()
+            sub = "Thanks for reaching out!"
+            send(request.form.get('msg'), sub, request.form.get('email'))
+            #except:
+                #print("email could not be sent")
+                #print(sys.exc_info()[0])
+        else:
+            render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
 
-    submission = User(lname=request.form.get('lname'), email=request.form.get('email'), msg=request.form.get('msg'), fname=request.form.get('fname'))
-    #db_session.add(submission)
-    #db_session.commit()
     output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
-    try:
-        test = request.form.get('msg')
-        try:
-            print(test + "\n From: \n" + request.form.get('email'))
-            email(test + "\n From: \n" + request.form.get('email'))
-        except:
-            print("email could not be sent")
-            print(test)
-    except:
-        print("no user found")
-
     return output
+
 
 @app.route('/crowdfund')
 def crowdfund():
     output = render_template('crowdfund/index.html')
     return output
+
 
 @app.route('/whitepaper')
 def whitepaper():
@@ -86,25 +124,22 @@ def deposit():
 
 @app.route("/register")
 def register():
-
-    output = render_template('dashboard/register.html')
+    output = render_template('crowdfund/register.html')
     return output
 
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
-    output = render_template("dashboard/register.html")
-    if request.form.get("email"):
+    output = render_template("crowdfund/register.html")
+    if request.form.get("email-reg"):
         output = redirect(url_for("index"))
-        email = request.form.get("email")
-        if request.form.get("password") is not None:
-            password = request.form.get("password")
+        email = request.form.get("email-reg")
+        if request.form.get("password-reg") is not None:
+            password = request.form.get("password-reg")
         else:
             password = "test"
-        exists = User.query.filter_by(email=email).first()
-        if current_user.is_authenticated():
-            user = User(nickname=request.form.get("username"), email=email, password=password, email_confirmed=0)
-        else:
-            user = User(nickname=request.form.get("username"), email=email, password=password, email_confirmed=0)
+        exists = Crowdfund.query.filter_by(email=email).first()
+        user = Crowdfund(email=email, password=password, email_confirmed=0)
+
 
         # Now we'll send the email confirmation link
         subject = "Confirm your email"
@@ -117,14 +152,14 @@ def create_account():
             _external=True)
 
         html = render_template(
-            'dashboard/email/activate.html',
+            'crowdfund/activate.html',
             confirm_url=confirm_url)
 
         if exists == None:
             db_session.add(user)
             db_session.commit()
             login_user(user, True)
-            #drill(user.email, subject, html)
+            send(user.email, subject, html)
         else:
             db_session.merge(user)
             db_session.commit()
@@ -150,7 +185,7 @@ def confirm_email(token):
 
 @app.route("/lostpw")
 def lostpw():
-    return render_template('dashboard/lostpw.html')
+    return render_template('crowdfund/lostpw.html')
 
 
 @app.route('/logout')
@@ -174,7 +209,7 @@ def login():
 
             return redirect(url_for('login'))
 
-    return render_template('dashboard/login.html')
+    return render_template('crowdfund/login.html')
 
 
 app.run(debug=True,host='0.0.0.0',port=1900,threaded=True)
