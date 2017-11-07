@@ -140,6 +140,8 @@ def create_account():
             password = "test"
         exists = Crowdfund.query.filter_by(email=email).first()
         user = Crowdfund(email=email, password=password, confirmed=0)
+        db_session.add(user)
+        db_session.commit()
 
 
         # Now we'll send the email confirmation link

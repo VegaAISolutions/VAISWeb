@@ -8,8 +8,8 @@ from sqlalchemy import create_engine
 
 app = Flask(__name__)
 
-dbloc = app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 0
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 1
 
 
 db = SQLAlchemy(app)
