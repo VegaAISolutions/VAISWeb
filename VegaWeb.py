@@ -203,8 +203,8 @@ def logout():
 def login():
 
     if request.form.get("email"):
-        user = Crowdfund.query.filter_by(email=request.form.get("email")).first()
-        if user.is_correct_password(request.form.get("password")):
+        user = Crowdfund.query.filter_by(email=request.form.get("email-login")).first()
+        if user.is_correct_password(request.form.get("password-login")):
             login_user(user, True)
 
             session['user'] = user.id
