@@ -208,7 +208,7 @@ def login():
             login_user(user, True)
 
             session['user'] = user.id
-            return redirect(url_for('index'))
+            return redirect(url_for('crowdfund'))
         else:
 
             return redirect(url_for('login'))
