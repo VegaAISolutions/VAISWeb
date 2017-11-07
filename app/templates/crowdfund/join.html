@@ -1,0 +1,54 @@
+{% extends 'crowdfund/layout.html' %}
+{% block content %}
+<section class="contribution-form">
+    <div class="container" align="center">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-contribution">
+                    <div class="panel-heading text-center">
+                        <h3>Your Contribution</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="loading-wrapper hidden"><span class="loading-animation"></span></div>
+                        <form class="row" action="/thanks" method="GET">
+                            <div class="clearfix">
+                                <div class="col-md-6">
+                                    <h2>Etherium Deposit Address</h2>
+                                    <input readonly="true" style="width:100%;padding-left:20%;margin-top:15%" placeholder={{ ethaddy }}>
+                                </div>
+                                <div class="qr col-md-6">
+                                    <img class="placeholder" src="https://www.shopify.com/growth-tools-assets/qr-code/shopify-faae7065b7b351d28495b345ed76096c03de28bac346deb1e85db632862fd0e4.png">
+                                </div>
+
+
+                            </div>
+                            <p>&nbsp;</p>
+                            <div class="form-group clearfix">
+                                <div class="col-md-8 col-sm-offset-2 text-center">
+                                    <a class="btn btn-block btn-success" href="/thankyou" id="submit-pay">Finished</a>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="col-md-6 col-md-offset-3 text-center">
+                                    <p class="last">
+                                        By proceeding, you are agreeing to our Terms &amp; <br>Conditions and Privacy Policy
+                                    </p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-12 text-text">
+                                <p>Your fuel drives feeds the very lifeblood to Vega's Brain</p>
+                                <p>Please note that Vega is not a charity, will not use your support for charitable programs, and your support of our software does not constitute a charitable donation. As such your contribution is not eligible to be treated as a charitable deduction for federal or state taxes in the United States or elsewhere.</p>
+                                <p>If you have any questions about contributing to Vega, please <a href="mailto:info@vegais.com">contact us here</a>.
+                                </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

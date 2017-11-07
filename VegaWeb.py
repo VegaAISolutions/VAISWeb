@@ -2,7 +2,8 @@ from app import app
 import feedparser
 from html.parser import HTMLParser
 from app import db_session, db
-from app.models import User, Crowdfund
+from app.models import User
+from app.models import Crowdfund
 from flask import redirect, url_for, render_template, request, session, g
 from flask_login import login_user, logout_user, current_user
 from itsdangerous import URLSafeTimedSerializer
@@ -215,5 +216,10 @@ def login():
 
     return render_template('crowdfund/login.html')
 
+sauce = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
+@app.route('/join')
+def join():
+    output = render_template('crowdfund/join.html',ethaddy=sauce)
+    return output
 
 app.run(debug=True,host='0.0.0.0',port=1900,threaded=True)
