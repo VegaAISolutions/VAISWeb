@@ -158,12 +158,12 @@ def create_account():
 
         if exists == None:
             db_session.add(user)
-            #db_session.commit()
+            db_session.commit()
             login_user(user, True)
             send(html, subject, user.email)
         else:
             db_session.merge(user)
-            #db_session.commit()
+            db_session.commit()
             login_user(user, True)
             output = redirect(url_for("crowdfund"))
     return output
@@ -173,15 +173,16 @@ def create_account():
 def confirm_email(token):
     try:
         email = ts.loads(token, salt="email-confirm-key", max_age=86400)
+        print(email)
     except:
         return "404"
 
-    user = User.query.filter_by(email=email).first()
+    user = Crowdfund.query.filter_by(email=email).first()
 
     user.email_confirmed = True
     session['user'] = user.id
-    #db_session.commit()
-    return redirect('/')
+    db_session.commit()
+    return redirect('/crowdfund')
 
 
 @app.route("/lostpw")
@@ -200,7 +201,7 @@ def logout():
 def login():
 
     if request.form.get("email"):
-        user = User.query.filter_by(email=request.form.get("email")).first()
+        user = Crowdfund.query.filter_by(email=request.form.get("email")).first()
         if user.is_correct_password(request.form.get("password")):
             login_user(user, True)
 

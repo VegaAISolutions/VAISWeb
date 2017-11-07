@@ -25,7 +25,7 @@ class Crowdfund(db.Model,Base,UserMixin):
     __tablename__ = 'cf'
     id = Column(Integer, primary_key=True)
     email = Column(String(80), nullable=True)
-    confirmed = Column(Boolean(), nullable=True)
+    confirmed = Boolean()
     _password = Column(String(128), nullable=True)
 
     def __repr__(self):
