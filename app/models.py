@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import Executable, ClauseElement
 import flask_bcrypt as bcrypt
 
 
-class User(Base):
+class User(db.Model,Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     email = Column(String(80), nullable=True)
@@ -21,11 +21,11 @@ class User(Base):
         return self.id
 
 
-class Crowdfund(UserMixin,Base):
+class Crowdfund(db.Model,Base,UserMixin):
     __tablename__ = 'cf'
     id = Column(Integer, primary_key=True)
     email = Column(String(80), nullable=True)
-    email_confirmed = Column(Boolean(0), nullable=True)
+    confirmed = Column(Boolean(), nullable=True)
     _password = Column(String(128), nullable=True)
 
     def __repr__(self):

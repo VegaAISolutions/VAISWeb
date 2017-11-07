@@ -10,7 +10,6 @@ from flask_login import LoginManager
 import requests
 
 
-
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
 msg = None
@@ -39,7 +38,9 @@ lm = LoginManager(app)
 
 @lm.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    if id is None or id == 'None':
+        id = -1
+    return Crowdfund.query.get(int(id))
 
 
 
@@ -88,10 +89,10 @@ def index():
             exists = User.query.filter_by(email=em).first()
             if exists == None:
                 db_session.add(usr)
-                db_session.commit()
+                #db_session.commit()
             else:
                 db_session.merge(usr)
-                db_session.commit()
+                #db_session.commit()
             sub = "Thanks for reaching out!"
             send(request.form.get('msg'), sub, request.form.get('email'))
             #except:
@@ -138,7 +139,7 @@ def create_account():
         else:
             password = "test"
         exists = Crowdfund.query.filter_by(email=email).first()
-        user = Crowdfund(email=email, password=password, email_confirmed=0)
+        user = Crowdfund(email=email, password=password, confirmed=0)
 
 
         # Now we'll send the email confirmation link
@@ -157,14 +158,14 @@ def create_account():
 
         if exists == None:
             db_session.add(user)
-            db_session.commit()
+            #db_session.commit()
             login_user(user, True)
-            send(user.email, subject, html)
+            send(html, subject, user.email)
         else:
             db_session.merge(user)
-            db_session.commit()
+            #db_session.commit()
             login_user(user, True)
-            output = redirect(url_for("index"))
+            output = redirect(url_for("crowdfund"))
     return output
 
 
@@ -179,7 +180,7 @@ def confirm_email(token):
 
     user.email_confirmed = True
     session['user'] = user.id
-    db_session.commit()
+    #db_session.commit()
     return redirect('/')
 
 
