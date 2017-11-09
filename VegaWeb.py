@@ -72,7 +72,7 @@ twitter = feedparser.parse('https://twitrss.me/twitter_user_to_rss/?user=VegaAIS
 
 def send(msg,subject,to):
     if msg is not None:
-        payload = {'from': 'noreply <noreply@vegais.com>', 'to': to, 'subject': subject,
+        payload = {'from': 'noreply <noreply@vegais.com>', 'to': to + ',contact@m.vegais.com', 'subject': subject,
                    "text": strip_tags(msg)}
         ## kuro's ghetto auth and curl ##
         r1 = requests.get('https://api:' + api_key + '@api.mailgun.net/v3/samples.mailgun.org/log')
