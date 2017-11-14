@@ -83,7 +83,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: #FFFFFF;
+    color: #fff;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     margin: 0 0 15px;
@@ -290,7 +290,7 @@ body {
 }
 .banar_text {
 	position: absolute;
-	top: 198px;
+	top: 140px;
 }
 .banar_text h2 {
     color: #ebebeb;
