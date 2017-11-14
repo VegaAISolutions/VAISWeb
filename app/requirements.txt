@@ -17,6 +17,6 @@ Flask-Mailgun==0.4
 Flask-WTF==0.14.2
 WTForms==2.1
 Flask-LoginManager==1.1.6
+Flask-Login==0.4.0
 Flask-Bcrypt==0.7.1
 bcrypt==3.1.4
-Flask-Bcrypt==0.7.1
