@@ -21,3 +21,27 @@ var config = {
 $('#countdown').countdown('2018/01/01', function(event) {
 $(this).html(event.strftime('%w Weeks %d Days %H:%M:%S'));
 });
+
+$.getScript('/static/assets/js/jquery.flot.js',function(){
+$.getScript('/static/assets/js/jquery.flot.pie.js',function(){
+
+
+var data = [],
+			series = Math.floor(Math.random() * 6) + 3;
+
+		for (var i = 0; i < series; i++) {
+			data[i] = {
+				label: "Series" + (i + 1),
+				data: Math.floor(Math.random() * 100) + 1
+			}
+		}
+
+
+$.plot('#p1', data, {
+    series: {
+        pie: {
+            show: true
+        }
+    }
+});
+})});
