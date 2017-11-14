@@ -1,0 +1,63 @@
+.btn-main {
+  background-color: #FF0000;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 5px solid #801830;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  transition: all .5s;
+}
+.btn-main:hover,
+.btn-main:focus {
+  color: #361d44;
+  border: 5px solid #801830;
+}
+
+.btn-main-success {
+  background-color: #33CC33;
+  border: 5px solid #009933;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  transition: all .5s;
+}
+.btn-main-success:hover,
+.btn-main-success:focus {
+  color: #361d44;
+  border: 5px solid #009933;
+}
+
+.btn-2nd {
+  background-color: #361d44;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 1px solid #8840bf;
+  color: white;
+  font-size: 14px;
+  transition: all .5s;
+}
+.btn-2nd:hover,
+.btn-2nd:focus {
+  color: #8840bf;
+}
+.icon-subtitle {
+  display: block;
+  text-align: center;
+  word-wrap: break-word;
+}
+.main-c {
+  color: #361d44;
+}
+.gold {
+  color: gold;
+}
+.silver {
+  color: silver;
+}
+.bronze {
+  color: brown;
+}
+
