@@ -19,5 +19,5 @@ var config = {
 
 
 $('#countdown').countdown('2018/01/01', function(event) {
-$(this).html(event.strftime('%w weeks %d days %H:%M:%S'));
+$(this).html(event.strftime('%w Weeks %d Days %H:%M:%S'));
 });
