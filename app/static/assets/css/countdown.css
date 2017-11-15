@@ -12,6 +12,7 @@ General Style
 body,
 html {
   font-family: 'Raleway', sans-serif;
+  color: white;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -31,7 +32,6 @@ body {
 ---------------------*/
 
 .content {
-  width: 480px;
   position: absolute;
   left: 50%;
 
