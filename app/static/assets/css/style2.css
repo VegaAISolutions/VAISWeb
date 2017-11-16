@@ -1989,3 +1989,7 @@ iframe {
         width: 100%;
     }
 }
+
+#distro {
+    margin-left:20%;
+}

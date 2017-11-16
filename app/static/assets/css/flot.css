@@ -37,9 +37,9 @@
     height: 400px;
 }
 
-#p1 {
-    width: 220px;
-    height: 220px;
+#p1,#p2,#p3 {
+    width: 350px;
+    height: 350px;
 }
 
 #menu {

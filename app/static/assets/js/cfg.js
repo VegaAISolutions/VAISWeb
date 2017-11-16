@@ -44,4 +44,20 @@ $.plot('#p1', data, {
         }
     }
 });
+$.plot('#p2', data, {
+    series: {
+        pie: {
+            innerRadius: 0.5,
+            show: true
+        }
+    }
+});
+$.plot('#p3', data, {
+    series: {
+        pie: {
+            innerRadius: 0.5,
+            show: true
+        }
+    }
+});
 })});
