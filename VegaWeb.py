@@ -132,9 +132,9 @@ def register():
 
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
-    output = render_template("crowdfund/login.html")
+    output = render_template("crowdfund/register.html")
     if request.form.get("email-reg"):
-        output = redirect(url_for("index"))
+        output = redirect(url_for("login"))
         email = request.form.get("email-reg")
         if request.form.get("password-reg") is not None:
             password = request.form.get("password-reg")
