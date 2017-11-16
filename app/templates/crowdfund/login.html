@@ -8,15 +8,15 @@
 
 <div class="container">
 
-	<form class="form-signin">
+	<form class="form-signin"  action="/login" method="POST">
 		<h1 class="form-signin-heading text-muted">Sign In</h1>
 		<input type="text" name="email-login" id="email-login" class="form-control" placeholder="Email address" required="" autofocus="">
 		<input type="password" name="password-login" id="password-login" class="form-control" placeholder="Password" required="">
-		<a href="/login" class="btn btn-lg btn-primary btn-block">
+		<button type="submit" class="btn btn-lg btn-primary btn-block">
 			Sign In
-		</a>
+		</button>
 	</form>
-    <div align="center" ><a href="/register" class="btn btn-info">Don't have an account?</a></div>
+    <div align="center" ><button class="btn btn-info">Don't have an account?</button></div>
 
 </div>
 

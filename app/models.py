@@ -1,10 +1,8 @@
-
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin
-from app import db_session,Base,app,db
-from sqlalchemy import Column, Integer, String, Boolean, BLOB
+from flask_login import UserMixin
+from app import Base,db
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.sql.expression import Executable, ClauseElement
+from sqlalchemy.sql.expression import ClauseElement
 import flask_bcrypt as bcrypt
 
 class User(db.Model,Base):
@@ -18,7 +16,7 @@ class User(db.Model,Base):
 
 class Crowdfund(db.Model,Base,UserMixin):
     __tablename__ = 'cf'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(80), nullable=True)
     confirmed = Boolean()
     _password = Column(String(128), nullable=True)
@@ -32,7 +30,8 @@ class Crowdfund(db.Model,Base,UserMixin):
         self._password = bcrypt.generate_password_hash(plaintext)
 
     def is_correct_password(self, plaintext):
-        return bcrypt.check_password_hash(self._password.encode('utf-8'), plaintext)
+        enc = self._password
+        return bcrypt.check_password_hash(enc, plaintext)
 
     @staticmethod
     def get_or_create(session, model, defaults=None, **kwargs):

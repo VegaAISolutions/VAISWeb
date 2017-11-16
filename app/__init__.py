@@ -2,9 +2,8 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
+
 
 app = Flask(__name__)
 
@@ -13,15 +12,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 1
 
 
 db = SQLAlchemy(app)
-engine = create_engine("sqlite:///VegaWeb.db")
-db_session = scoped_session(sessionmaker(autocommit=True,autoflush=False,bind=engine))
 
 Base = declarative_base()
-Base.query = db_session.query_property()
+Base.query = db.session.query_property()
 from app.models import User,Crowdfund
 db.init_app(app)
 
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=db.engine)
 db.create_all()
 
 BCRYPT_LOG_ROUNDS = 12

@@ -1,7 +1,7 @@
 from app import app
 import feedparser
 from html.parser import HTMLParser
-from app import db_session, db
+from app import db
 from app.models import User
 from app.models import Crowdfund
 from flask import redirect, url_for, render_template, request, session, g
@@ -31,7 +31,7 @@ def before_request():
 
 @app.after_request
 def after_request(response):
-    db_session.remove()
+    db.session.remove()
     return response
 
 
@@ -90,11 +90,11 @@ def index():
             em = request.form.get("email")
             exists = User.query.filter_by(email=em).first()
             if exists == None:
-                db_session.add(usr)
-                db_session.commit()
+                db.session.add(usr)
+                db.session.commit()
             else:
-                db_session.merge(usr)
-                db_session.commit()
+                db.session.merge(usr)
+                db.session.commit()
             sub = "Thanks for reaching out!"
             send(request.form.get('msg'), sub, request.form.get('email'))
             #except:
@@ -159,13 +159,13 @@ def create_account():
             confirm_url=confirm_url)
 
         if exists == None:
-            db_session.add(user)
-            #db_session.commit()
+            db.session.add(user)
+            db.session.commit()
             login_user(user, True)
             send(html, subject, user.email)
         else:
-            db_session.merge(user)
-            #db_session.commit()
+            db.session.merge(user)
+            db.session.commit()
             login_user(user, True)
             output = redirect(url_for("login"))
     return output
@@ -183,7 +183,7 @@ def confirm_email(token):
 
     user.email_confirmed = True
     session['user'] = user.id
-    #db_session.commit()
+    db.session.commit()
     return redirect('/crowdfund')
 
 
@@ -201,16 +201,19 @@ def logout():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.form.get("email-login"):
-        user = Crowdfund.query.filter_by(email=request.form.get("email-login")).first()
+    email = request.form.get("email-login")
+    if email is not None:
+        user = Crowdfund.query.filter_by(email=email).first()
         print(user)
-        if user.is_correct_password(request.form.get("password-login")):
-            login_user(user, True)
-            session['user'] = user.id
-            return redirect(url_for('crowdfund'))
-        else:
-            print(user)
-            return redirect(url_for('login'))
+        if user is not None:
+            encodes = str(request.form.get("password-login"))
+            if user.is_correct_password(encodes):
+                login_user(user, True)
+                session['user'] = user.id
+                return redirect(url_for('crowdfund'))
+            else:
+                print(user)
+                return redirect(url_for('login'))
 
     return render_template('crowdfund/login.html')
 
