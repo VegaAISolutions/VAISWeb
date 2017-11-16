@@ -1,5 +1,5 @@
 import feedparser
-from app import db,app
+from app import db
 from app.models import User
 from app.models import Crowdfund
 from flask import redirect, url_for, render_template, request, session, g
@@ -8,6 +8,7 @@ from itsdangerous import URLSafeTimedSerializer
 from flask_login import LoginManager
 import requests,sys
 from html.parser import HTMLParser
+from app import app
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
@@ -18,6 +19,7 @@ ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
 #### MailGun Key ####
 api_key = 'key-5c140fd81223a56d283edc025a523a0e'
+
 
 class MLStripper(HTMLParser):
     def __init__(self):
@@ -32,6 +34,7 @@ class MLStripper(HTMLParser):
     def get_data(self):
 
         return ''.join(self.fed)
+
 
 @app.before_request
 def before_request():
@@ -73,6 +76,7 @@ def send(msg,subject,to):
         r2 = requests.post("https://api:" + api_key + "@api.mailgun.net/v3/m.vegais.com/messages",params=payload)
         print(r2.text, r2.url)
     return print(r2.status_code)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

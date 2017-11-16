@@ -4,7 +4,6 @@ from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 
-
 app = Flask(__name__)
 
 dbloc = app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
@@ -16,6 +15,7 @@ db = SQLAlchemy(app)
 Base = declarative_base()
 Base.query = db.session.query_property()
 from app.models import User,Crowdfund
+from app import views
 db.init_app(app)
 
 Base.metadata.create_all(bind=db.engine)
