@@ -1,8 +1,8 @@
 #!/bin/bash
 sudo -s;
 docker stop vaisw;
-docker rm viasw;
-docker rmi viasw
+docker rm vaisw;
+docker rmi vaisw
 cd ..;
 rm -rf VAISWeb;
 git clone https://github.com/slapglif/VAISWeb.git;
