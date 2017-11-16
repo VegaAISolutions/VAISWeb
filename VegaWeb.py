@@ -85,15 +85,16 @@ def index():
     if "@" not in request.url:
         if request.form.get('email') is not None:
             #try:
-            usr = User(email=request.form.get('email'), lname=request.form.get('lname'), fname=request.form.get('fname'),msg=request.form.get('message'))
+            usr = User(email=request.form.get('email'), lname=request.form.get('lname'),
+                       fname=request.form.get('fname'), msg=request.form.get('message'))
             em = request.form.get("email")
             exists = User.query.filter_by(email=em).first()
             if exists == None:
                 db_session.add(usr)
-                #db_session.commit()
+                db_session.commit()
             else:
                 db_session.merge(usr)
-                #db_session.commit()
+                db_session.commit()
             sub = "Thanks for reaching out!"
             send(request.form.get('msg'), sub, request.form.get('email'))
             #except:
@@ -131,7 +132,7 @@ def register():
 
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
-    output = render_template("crowdfund/register.html")
+    output = render_template("crowdfund/login.html")
     if request.form.get("email-reg"):
         output = redirect(url_for("index"))
         email = request.form.get("email-reg")
@@ -141,8 +142,6 @@ def create_account():
             password = "test"
         exists = Crowdfund.query.filter_by(email=email).first()
         user = Crowdfund(email=email, password=password, confirmed=0)
-        db_session.add(user)
-        db_session.commit()
 
 
         # Now we'll send the email confirmation link
@@ -161,14 +160,14 @@ def create_account():
 
         if exists == None:
             db_session.add(user)
-            db_session.commit()
+            #db_session.commit()
             login_user(user, True)
             send(html, subject, user.email)
         else:
             db_session.merge(user)
-            db_session.commit()
+            #db_session.commit()
             login_user(user, True)
-            output = redirect(url_for("crowdfund"))
+            output = redirect(url_for("login"))
     return output
 
 
@@ -184,7 +183,7 @@ def confirm_email(token):
 
     user.email_confirmed = True
     session['user'] = user.id
-    db_session.commit()
+    #db_session.commit()
     return redirect('/crowdfund')
 
 
@@ -202,16 +201,15 @@ def logout():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
-    if request.form.get("email"):
+    if request.form.get("email-login"):
         user = Crowdfund.query.filter_by(email=request.form.get("email-login")).first()
+        print(user)
         if user.is_correct_password(request.form.get("password-login")):
             login_user(user, True)
-
             session['user'] = user.id
             return redirect(url_for('crowdfund'))
         else:
-
+            print(user)
             return redirect(url_for('login'))
 
     return render_template('crowdfund/login.html')

@@ -7,35 +7,21 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.sql.expression import Executable, ClauseElement
 import flask_bcrypt as bcrypt
 
-
-class Crowdfund(db.Model,Base):
-    __tablename__ = 'cf'
-    id = Column(Integer, primary_key=True)
-    email = Column(String(80), nullable=True)
-    confirmed = Boolean()
-    _password = Column(String(128), nullable=True)
-    password = Column(String(128), nullable=True)
-
-    def __repr__(self):
-        """docstring for __repr__"""
-        return self.id
-
-
 class User(db.Model,Base):
     __tablename__ = 'user'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(80), nullable=True)
     fname = Column(String(80), nullable=True)
     lname = Column(String(80), nullable=True)
     msg = Column(String(300), nullable=True)
 
-    def __repr__(self):
-        """docstring for __repr__"""
-        return self.id
 
-
-
-
+class Crowdfund(db.Model,Base,UserMixin):
+    __tablename__ = 'cf'
+    id = Column(Integer, primary_key=True)
+    email = Column(String(80), nullable=True)
+    confirmed = Boolean()
+    _password = Column(String(128), nullable=True)
 
     @hybrid_property
     def password(self):
