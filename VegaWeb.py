@@ -15,7 +15,7 @@ app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a
 sauce = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
 msg = None
 ### Password Salt Key ###
-ts = URLSafeTimedSerializer(app.config["boil em mash em put em in a stew"])
+ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
 #### MailGun Key ####
 api_key = 'key-5c140fd81223a56d283edc025a523a0e'
