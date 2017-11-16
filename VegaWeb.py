@@ -7,7 +7,7 @@ from flask import redirect, url_for, render_template, request, session, g
 from flask_login import login_user, logout_user, current_user
 from itsdangerous import URLSafeTimedSerializer
 from flask_login import LoginManager
-import requests
+import requests,sys
 from html.parser import HTMLParser
 
 ### Give darrel a hand ###
@@ -79,22 +79,22 @@ def send(msg,subject,to):
 def index():
     if "@" not in request.url:
         if request.form.get('email') is not None:
-            #try:
-            usr = User(email=request.form.get('email'), lname=request.form.get('lname'),
-                       fname=request.form.get('fname'), msg=request.form.get('message'))
-            em = request.form.get("email")
-            exists = User.query.filter_by(email=em).first()
-            if exists == None:
-                db.session.add(usr)
-                db.session.commit()
-            else:
-                db.session.merge(usr)
-                db.session.commit()
-            sub = "Thanks for reaching out!"
-            send(request.form.get('msg'), sub, request.form.get('email'))
-            #except:
-                #print("email could not be sent")
-                #print(sys.exc_info()[0])
+            try:
+                usr = User(email=request.form.get('email'), lname=request.form.get('lname'),
+                           fname=request.form.get('fname'), msg=request.form.get('message'))
+                em = request.form.get("email")
+                exists = User.query.filter_by(email=em).first()
+                if exists is not None:
+                    db.session.add(usr)
+                    db.session.commit()
+                else:
+                    db.session.merge(usr)
+                    db.session.commit()
+                sub = "Thanks for reaching out!"
+                send(request.form.get('msg'), sub, request.form.get('email'))
+            except:
+                print("email could not be sent")
+                print(sys.exc_info()[0])
         else:
             render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
 
