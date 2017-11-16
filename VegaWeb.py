@@ -1,6 +1,5 @@
 from app import app
 import feedparser
-from html.parser import HTMLParser
 from app import db
 from app.models import User
 from app.models import Crowdfund
@@ -9,18 +8,31 @@ from flask_login import login_user, logout_user, current_user
 from itsdangerous import URLSafeTimedSerializer
 from flask_login import LoginManager
 import requests
-
+from html.parser import HTMLParser
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
+sauce = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
 msg = None
 ### Password Salt Key ###
-ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
+ts = URLSafeTimedSerializer(app.config["boil em mash em put em in a stew"])
 
 #### MailGun Key ####
 api_key = 'key-5c140fd81223a56d283edc025a523a0e'
 
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.strict = False
+        self.convert_charrefs= True
+        self.fed = []
 
+    def handle_data(self, d):
+        self.fed.append(d)
+
+    def get_data(self):
+
+        return ''.join(self.fed)
 
 @app.before_request
 def before_request():
@@ -42,23 +54,6 @@ def load_user(id):
     if id is None or id == 'None':
         id = -1
     return Crowdfund.query.get(int(id))
-
-
-
-        #its a lie, this method IS abstracted
-class MLStripper(HTMLParser):
-    def __init__(self):
-        self.reset()
-        self.strict = False
-        self.convert_charrefs= True
-        self.fed = []
-
-    def handle_data(self, d):
-        self.fed.append(d)
-
-    def get_data(self):
-
-        return ''.join(self.fed)
 
 
 def strip_tags(html):
@@ -217,7 +212,7 @@ def login():
 
     return render_template('crowdfund/login.html')
 
-sauce = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
+
 @app.route('/join')
 def join():
     output = render_template('crowdfund/join.html',ethaddy=sauce)
