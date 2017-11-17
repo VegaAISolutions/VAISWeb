@@ -13,7 +13,6 @@ SQLAlchemy==1.1.14
 urllib3==1.21.1
 Werkzeug==0.12.2
 feedparser==5.2.1
-Flask-Mailgun==0.4
 Flask-WTF==0.14.2
 WTForms==2.1
 Flask-LoginManager==1.1.6

@@ -5,6 +5,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.sql.expression import ClauseElement
 import flask_bcrypt as bcrypt
 
+
 class User(db.Model,Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, autoincrement=True)

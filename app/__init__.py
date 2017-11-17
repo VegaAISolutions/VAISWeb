@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 app = Flask(__name__)
 
-dbloc = app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 1
 
 

@@ -12,13 +12,13 @@ from app import app
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
-sauce = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
+eth_addy = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
 msg = None
 ### Password Salt Key ###
 ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
 #### MailGun Key ####
-api_key = 'key-5c140fd81223a56d283edc025a523a0e'
+mailgun_key = 'key-5c140fd81223a56d283edc025a523a0e'
 
 
 class MLStripper(HTMLParser):
@@ -51,6 +51,7 @@ def after_request(response):
 
 lm = LoginManager(app)
 
+
 @lm.user_loader
 def load_user(id):
     if id is None or id == 'None':
@@ -72,8 +73,8 @@ def send(msg,subject,to):
         payload = {'from': 'noreply <noreply@vegais.com>', 'to': to + ',contact@m.vegais.com', 'subject': subject,
                    "text": strip_tags(msg)}
         ## kuro's ghetto auth and curl ##
-        r1 = requests.get('https://api:' + api_key + '@api.mailgun.net/v3/samples.mailgun.org/log')
-        r2 = requests.post("https://api:" + api_key + "@api.mailgun.net/v3/m.vegais.com/messages",params=payload)
+        r1 = requests.get('https://api:' + mailgun_key + '@api.mailgun.net/v3/samples.mailgun.org/log')
+        r2 = requests.post("https://api:" + mailgun_key + "@api.mailgun.net/v3/m.vegais.com/messages",params=payload)
         print(r2.text, r2.url)
     return print(r2.status_code)
 
@@ -81,6 +82,7 @@ def send(msg,subject,to):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if "@" not in request.url:
+        output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
         if request.form.get('email') is not None:
             try:
                 usr = User(email=request.form.get('email'), lname=request.form.get('lname'),
@@ -98,9 +100,6 @@ def index():
             except:
                 print("email could not be sent")
                 print(sys.exc_info()[0])
-        else:
-            render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
-
     output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
     return output
 
@@ -156,7 +155,7 @@ def create_account():
             'crowdfund/activate.html',
             confirm_url=confirm_url)
 
-        if exists == None:
+        if exists is not None:
             db.session.add(user)
             db.session.commit()
             login_user(user, True)
@@ -218,7 +217,7 @@ def login():
 
 @app.route('/join')
 def join():
-    output = render_template('crowdfund/join.html',ethaddy=sauce)
+    output = render_template('crowdfund/join.html',ethaddy=eth_addy)
     return output
 
 @app.route('/thankyou')
