@@ -127,6 +127,7 @@ def register():
     output = render_template('crowdfund/register.html')
     return output
 
+
 @app.route('/register/create', methods=["GET", "POST"])
 def create_account():
     output = render_template("crowdfund/register.html")
@@ -219,6 +220,7 @@ def login():
 def join():
     output = render_template('crowdfund/join.html',ethaddy=eth_addy)
     return output
+
 
 @app.route('/thankyou')
 def thankyou():
