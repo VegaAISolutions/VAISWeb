@@ -104,10 +104,10 @@ def index():
     return output
 
 
-@app.route('/crowdfund')
-def crowdfund():
-    output = render_template('crowdfund/index.html')
-    return output
+# @app.route('/crowdfund')
+# def crowdfund():
+#     output = render_template('crowdfund/index.html')
+#     return output
 
 
 @app.route('/whitepaper')
@@ -116,16 +116,16 @@ def whitepaper():
     return output
 
 
-@app.route('/deposit')
-def deposit():
-    output = render_template('crowdfund/deposit.html')
-    return output
-
-
-@app.route("/register")
-def register():
-    output = render_template('crowdfund/register.html')
-    return output
+# @app.route('/deposit')
+# def deposit():
+#     output = render_template('crowdfund/deposit.html')
+#     return output
+#
+#
+# @app.route("/register")
+# def register():
+#     output = render_template('crowdfund/register.html')
+#     return output
 
 
 @app.route('/register/create', methods=["GET", "POST"])
