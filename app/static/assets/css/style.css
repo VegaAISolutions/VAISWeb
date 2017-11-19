@@ -648,15 +648,15 @@ body {
 	width: 70%;
 	background: #2c9da5;
 	top: 0;
-	left: -39px;
-	transform: rotate(-37deg);
+    right: -30px;
+    transform: rotate(-330deg);
 }
 
 .team_member_title h5 {
 	text-align: center;
 	color: #fff;
 	text-transform: uppercase;
-	margin-left: -45px;
+	margin-left: -2px;
 	margin-top: 6px;
 }
 
