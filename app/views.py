@@ -13,7 +13,6 @@ from app import app
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
 eth_addy = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
-msg = None
 ### Password Salt Key ###
 ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
