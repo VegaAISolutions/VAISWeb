@@ -2,7 +2,7 @@ import feedparser
 from app import db
 from app.models import User
 from app.models import Crowdfund
-from flask import redirect, url_for, render_template, request, session, g
+from flask import redirect, url_for, render_template, request, session, g, send_from_directory
 from flask_login import login_user, logout_user
 from itsdangerous import URLSafeTimedSerializer
 from flask_login import LoginManager
@@ -82,7 +82,6 @@ def send(msg,subject,to):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if "@" not in request.url:
-        output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
         if request.form.get('email') is not None:
             try:
                 usr = User(email=request.form.get('email'), lname=request.form.get('lname'),
@@ -104,6 +103,7 @@ def index():
     return output
 
 
+
 # @app.route('/crowdfund')
 # def crowdfund():
 #     output = render_template('crowdfund/index.html')
@@ -111,10 +111,8 @@ def index():
 
 
 @app.route('/whitepaper')
-def whitepaper():
-    output = render_template('index/whitepaper.html')
-    return output
-
+def show_static_pdf():
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'Vega-WhitePaper.pdf')
 
 # @app.route('/deposit')
 # def deposit():

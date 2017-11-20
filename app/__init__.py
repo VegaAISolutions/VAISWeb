@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VegaWeb.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 1
-
+app.config['UPLOAD_FOLDER'] = "static/"
 
 db = SQLAlchemy(app)
 
