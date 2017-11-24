@@ -14,7 +14,7 @@ import json
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
-eth_addy = "0xb794f5ea0ba39494ce839613fffba74279579268"
+eth_addy = "0x7ee3032a81c998c9f38de324e848f187722e3edf"
 ### Password Salt Key ###
 ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
