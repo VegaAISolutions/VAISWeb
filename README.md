@@ -38,6 +38,15 @@ update-rc.d docker.io defaults
 Installing is easy assuming you have python3 and pip installed:
 
 ```
+git clone https://github.com/corpetty/py-etherscan-api
+cd py-etherscan-api
+```
+```
+python3 setup.py install
+cd ..
+rm -rf py-etherscan-api
+```
+```
 git clone https://github.com/slapglif/VAISWeb.git
 cd VAISWeb
 ```
