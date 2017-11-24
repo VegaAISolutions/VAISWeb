@@ -9,15 +9,25 @@ from flask_login import LoginManager
 import requests,sys
 from html.parser import HTMLParser
 from app import app
+from etherscan.accounts import Account
+import json
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
-eth_addy = "rfgJHUJHG657YHjhjhmhugy6453678gjgf"
+eth_addy = "0xb794f5ea0ba39494ce839613fffba74279579268"
 ### Password Salt Key ###
 ts = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
 #### MailGun Key ####
 mailgun_key = 'key-5c140fd81223a56d283edc025a523a0e'
+
+#### Etherscan Key ####
+etherscan_key = 'UG4SAB8DV97VX7V15Y43GIUCKZCCP4BCU2'
+
+def scan():
+    api = Account(address=eth_addy, api_key=etherscan_key)
+    balance = api.get_balance()
+    return balance[:4]
 
 
 class MLStripper(HTMLParser):
@@ -103,10 +113,11 @@ def index():
 
 
 
-# @app.route('/crowdfund')
-# def crowdfund():
-#     output = render_template('crowdfund/index.html')
-#     return output
+@app.route('/crowdfund')
+def crowdfund():
+    eth = scan()
+    output = render_template('crowdfund/index.html', eth=eth)
+    return output
 
 
 @app.route('/whitepaper')
