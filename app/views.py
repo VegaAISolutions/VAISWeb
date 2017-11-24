@@ -123,6 +123,16 @@ def crowdfund():
 def show_static_pdf():
     return send_from_directory(app.config['UPLOAD_FOLDER'], 'Vega-WhitePaper.pdf')
 
+@app.route('/toc')
+def toc():
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'toc.pdf')
+
+@app.route('/privacy')
+def privacy():
+    return send_from_directory(app.config['UPLOAD_FOLDER'], 'privacy.pdf')
+
+
+
 # @app.route('/deposit')
 # def deposit():
 #     output = render_template('crowdfund/deposit.html')
