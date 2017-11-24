@@ -22,7 +22,7 @@ $('#countdown').countdown('2018/01/01', function(event) {
 $(this).html(event.strftime('%w Weeks %d Days %H:%M:%S'));
 });
 
-$.getScript('/static/assets/js/jquery.flot.js',function(){
+/*$.getScript('/static/assets/js/jquery.flot.js',function(){
 $.getScript('/static/assets/js/jquery.flot.pie.js',function(){
 
 
@@ -60,7 +60,7 @@ $.plot('#p3', data, {
         }
     }
 });
-})});
+})});*/
 
 $(document).ready(function () {
         $('.collapse.in').prev('.panel-heading').addClass('active');
