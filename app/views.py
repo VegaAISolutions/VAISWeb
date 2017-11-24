@@ -10,7 +10,6 @@ import requests,sys
 from html.parser import HTMLParser
 from app import app
 from etherscan.accounts import Account
-import pyqrcode
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
