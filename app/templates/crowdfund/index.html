@@ -9,15 +9,15 @@
 <div class="row">
     <div class="col-sm-12">
          <div class="text">
-
              <h2>Join the Vega Crowdfund Today!</h2>
-             <h1>Goal 2000 ETH</h1>
-             <h1>ETH Raised: {{ eth }}</h1> </div>
-
+             <h1 class="t1">Goal 2000 ETH</h1>
+            <a class="t2"
+               href="https://etherscan.io/address/0x7ee3032a81c998c9f38de324e848f187722e3edf#">
+              <h1>ETH Raised: {{ eth }}</h1></a>
          <p>&nbsp;</p><!-- Countdown -->
             <div align="center"><h2>Crowdfund Ends:</h2></div>
             <div class="countdown text-success text-center text-primary" id="countdown">06 weeks 05 days 10:25:38</div>
-            <p>&nbsp;</p><!-- /Countdown -->
+            <pc>&nbsp;</pc><!-- /Countdown -->
 
 
             <div align="center" class="col-md-12">
@@ -146,6 +146,16 @@
 </section>
 
 
+    <!-- ====== main js file ====== -->
+    <script src="/static/assets/js/jquery-2.1.3.min.js"></script>
+    <!-- ====== bootstrap js file ====== -->
+    <script src="/static/assets/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('.t1').tooltip({title: "USD VALUE: {{ usdtotal }}", trigger: "hover"});
+    $('.t2').tooltip({title: "USD VALUE: {{ usd }}", trigger: "hover"});
+});
+</script>
 
 
 {% endblock %}

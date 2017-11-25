@@ -10,7 +10,7 @@ import requests,sys
 from html.parser import HTMLParser
 from app import app
 from etherscan.accounts import Account
-import math
+from etherscan.stats import Stats
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
@@ -23,6 +23,12 @@ mailgun_key = 'key-5c140fd81223a56d283edc025a523a0e'
 
 #### Etherscan Key ####
 etherscan_key = 'UG4SAB8DV97VX7V15Y43GIUCKZCCP4BCU2'
+
+
+def price():
+    api = Stats(api_key=etherscan_key)
+    last_price = api.get_ether_last_price()
+    return float(last_price['ethusd'])
 
 
 def scan():
@@ -114,10 +120,15 @@ def index():
 
 
 
+def inject():
+    eth = scan()
+    usdtotal = 2000 * price()
+    usd = int(eth) * price()
+    return [eth,usd,usdtotal]
+
 @app.route('/crowdfund')
 def crowdfund():
-    eth = scan()
-    output = render_template('crowdfund/index.html', eth=eth)
+    output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],usdtotal=inject()[2])
     return output
 
 

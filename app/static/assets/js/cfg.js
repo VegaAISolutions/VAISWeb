@@ -44,6 +44,8 @@ $.plot('#p3', data, {
 })});*/
 
 $(document).ready(function () {
+        $('.t1').tooltip({title: "USD VALUE: {{ usdtotal }}", trigger: "hover"});
+        $('.t2').tooltip({title: "USD VALUE: {{ usd }}", trigger: "hover"});
         $('.collapse.in').prev('.panel-heading').addClass('active');
         $('#accordion, #bs-collapse')
             .on('show.bs.collapse', function (a) {
