@@ -1,23 +1,5 @@
 {% extends 'crowdfund/outside.html' %}
 {% block content %}
-
-    <script>
-    var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-copyTextareaBtn.addEventListener('click', function(event) {
-  var copyTextarea = document.querySelector('.js-copytextarea');
-  copyTextarea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
-  } catch (err) {
-    console.log('Oops, unable to copy');
-  }
-});
-
-    </script>
 <section class="contribution-form">
     <div class="container" align="center">
         <div class="row">
@@ -29,7 +11,7 @@ copyTextareaBtn.addEventListener('click', function(event) {
                             <div class="clearfix">
                                 <div class="col-md-6">
                                     <h2>Ethereum Deposit Address</h2>
-                                    <input class="js-copytextarea" readonly="true" style="width:100%;padding-left:20%;margin-top:15%" placeholder={{ ethaddy }}><button style="color: black;" class="fa icon-copy js-textareacopybtn "></button>
+                                    <input readonly="true" style="width:100%;padding-left:20%;margin-top:15%" placeholder={{ ethaddy }}>
                                     <p class="text-danger">CAUTION: DO NOT SEND FROM AN EXCHANGE. Send from a wallet where you control the private keys. Kindly avoid sending smaller than 0.001 ETH.</p>
                                      <p class="text-success">Your crowdfund is exchanged through the escrow and Vega token will be distributed to you towards the end of the crowdfund period.</p>
                                 </div>
