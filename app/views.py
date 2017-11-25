@@ -10,6 +10,7 @@ import requests,sys
 from html.parser import HTMLParser
 from app import app
 from etherscan.accounts import Account
+import math
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
@@ -23,10 +24,11 @@ mailgun_key = 'key-5c140fd81223a56d283edc025a523a0e'
 #### Etherscan Key ####
 etherscan_key = 'UG4SAB8DV97VX7V15Y43GIUCKZCCP4BCU2'
 
+
 def scan():
     api = Account(address=eth_addy, api_key=etherscan_key)
     balance = api.get_balance()
-    return balance[:4]
+    return int(balance[:-15]) / 1000
 
 
 class MLStripper(HTMLParser):
