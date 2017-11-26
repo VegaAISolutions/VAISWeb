@@ -153,7 +153,7 @@
 <script>
 $(document).ready(function () {
     $('.t1').tooltip({title: "USD VALUE: {{ usdtotal }}", trigger: "hover"});
-    $('.t2').tooltip({title: "USD VALUE: {{ usd }}", trigger: "hover"});
+    $('.t2').tooltip({title: "USD VALUE: {{ usd|round(2) }}", trigger: "hover"});
 });
 </script>
 
