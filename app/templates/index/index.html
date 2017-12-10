@@ -21,15 +21,9 @@
     <!-- ====== end brand slide here ====== -->
         <!-- ====== blog start here ====== -->
     <p>&nbsp;</p>
+
     <section id="news">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section_title">
-                        <h3>latest news</h3>
-                    </div>
-                </div>
-            </div>
 
             <div class="row">
                 <div class="blog_containre owl-carousel">
@@ -154,18 +148,67 @@
         <!-- ====== video strart here ====== -->
     <section id="our_video">
         <div class="container text-center">
-            <div class="row">
+
+
+
+            <div class="">
+
                 <div class="col-sm-12">
                     <div class="video_container">
-                        <h3>Check out our video!</h3>
-                        <p>Coming Soon!</p>
-                        <img class="bla-1" href="">
-			                <i class="fa fa-play-circle video_paly" aria-hidden="true"></i>
-		                </img>
+                      <h3>Check out our Videos & Media!</h3>
+
+  <div class="row">
+                <div class="blog_containre owl-carousel">
+
+                        {% for x in youtube.entries %}
+                    <div class="singal_blog">
+                        <div class="blog_item">
+                            <div class="blog_img">
+                                <img class="img-responsive" src="/static/assets/img/youtube_PNG21.png" alt="blog"  style="width: 75%; padding-left:25%">
+                            </div>
+                            <div class="media-info text-center">
+                                <ul>
+                                    <li><i class="fa fa-calendar blog_icon" aria-hidden="true"></i>{{ x.published }}</li>
+                                </ul>
+                                <h3>{{ x.title | truncate(35) }}</h3>
+                                <p>{{ strip_tags(x.description) | truncate(150) }}</p>
+                                <button><a href="{{ x.link }}" style="color: white"  target="_blank">More</a></button>
+                            </div>
+                        </div>
+                    </div>
+                     {% endfor %}
+
+
+                    {% for x in soundcloud.entries %}
+                    {% if 'vega' in x %}
+                    <div class="singal_blog">
+                        <div class="blog_item">
+                            <div class="blog_img">
+                                <img class="img-responsive" src="/static/assets/img/580b57fcd9996e24bc43c537.png" alt="blog"  style="width: 75%; padding-left:25%">
+                            </div>
+                            <div class="media-info text-center">
+                                <ul>
+                                    <li><i class="fa fa-calendar blog_icon" aria-hidden="true"></i>{{ x.published }}</li>
+                                </ul>
+                                <h3>{{ x.title | truncate(35) }}</h3>
+                                <p>{{ strip_tags(x.description) | truncate(150) }}</p>
+                                <button><a href="{{ x.link }}" style="color: white"  target="_blank">More</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                     {% endfor %}
+
+
+
+{#                        <img class="bla-1" href="">#}
+{#			                <i class="fa fa-play-circle video_paly" aria-hidden="true"></i>#}
+{#		                </img>#}
                     </div>
                 </div>
             </div>
         </div>
+   </div>
     </section>
     <!-- ====== video end here ====== -->
 

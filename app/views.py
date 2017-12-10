@@ -82,13 +82,14 @@ def strip_tags(html):
 
 medium = feedparser.parse('https://medium.com/feed/@VegaAISolutions')
 twitter = feedparser.parse('https://twitrss.me/twitter_user_to_rss/?user=VegaAISolutions')
+youtube = feedparser.parse('https://www.youtube.com/feeds/videos.xml?channel_id=UCh0VfuCPgW88Y-N1vyNjinA')
+soundcloud = feedparser.parse('http://feeds.soundcloud.com/users/soundcloud:users:112453360/sounds.rss')
 
 
 def send(msg,subject,to):
     if msg is not None:
         payload = {'from': 'noreply <noreply@vegais.com>', 'to': to + ',contact@m.vegais.com', 'subject': subject,
                    "text": strip_tags(msg)}
-        ## kuro's ghetto auth and curl ##
         r1 = requests.get('https://api:' + mailgun_key + '@api.mailgun.net/v3/samples.mailgun.org/log')
         r2 = requests.post("https://api:" + mailgun_key + "@api.mailgun.net/v3/m.vegais.com/messages",params=payload)
         print(r2.text, r2.url)
@@ -115,7 +116,8 @@ def index():
             except:
                 print("email could not be sent")
                 print(sys.exc_info()[0])
-    output = render_template('index/index.html', medium=medium, twitter=twitter, strip_tags=strip_tags)
+    output = render_template('index/index.html', medium=medium, twitter=twitter, youtube=youtube,
+                             soundcloud=soundcloud, strip_tags=strip_tags)
     return output
 
 
