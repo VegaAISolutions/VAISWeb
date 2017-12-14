@@ -124,13 +124,15 @@ def index():
 
 def inject():
     eth = scan()
-    usdtotal = 2000 * price()
+    ask = 600000 / price()
+    usdtotal = 600000
     usd = int(eth) * price()
-    return [eth,usd,usdtotal]
+    return [eth,usd,usdtotal,ask]
 
 @app.route('/crowdfund')
 def crowdfund():
-    output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],usdtotal=inject()[2])
+    output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],
+                             usdtotal=inject()[2],ethgoal=inject()[3])
     return output
 
 
