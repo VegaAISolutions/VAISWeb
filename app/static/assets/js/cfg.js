@@ -1,5 +1,5 @@
 
-$('#countdown').countdown('2017/12/17', function(event) {
+$('#countdown').countdown('2018/01/07', function(event) {
 $(this).html(event.strftime('%w Weeks %d Days %H:%M:%S'));
 });
 
