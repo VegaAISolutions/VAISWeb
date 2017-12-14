@@ -34,7 +34,7 @@ def price():
 def scan():
     api = Account(address=eth_addy, api_key=etherscan_key)
     balance = api.get_balance()
-    return int(balance[:-15]) / 1000
+    return int(balance[:-14]) / 1000
 
 
 class MLStripper(HTMLParser):
