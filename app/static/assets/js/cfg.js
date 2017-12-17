@@ -42,9 +42,6 @@ $.plot('#p3', data, {
 })});*/
 
 $(document).ready(function () {
-        $('#countdown').countdown('2018/01/07', function(event) {
-        $(this).html(event.strftime('%w Weeks %d Days %H:%M:%S'));
-        });
         $('.t1').tooltip({title: "USD VALUE: {{ usdtotal }}", trigger: "hover"});
         $('.t2').tooltip({title: "USD VALUE: {{ usd }}", trigger: "hover"});
         $('.collapse.in').prev('.panel-heading').addClass('active');
