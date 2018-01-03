@@ -136,12 +136,16 @@ def inject():
     ask = 600000 / price()
     usdtotal = 600000
     usd = int(eth) * price()
-    return [eth,usd,usdtotal,ask]
+
+    calc = (600000 - (eth * ask + btcscan() * btcusd())) / ask
+    tround = ("%.4f" % calc)
+    return [eth,usd,usdtotal,ask,tround]
 
 @app.route('/crowdfund')
 def crowdfund():
     output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],
-                             usdtotal=inject()[2],ethgoal=inject()[3],btc=btcscan(),btcusd=btcusd(),ethusd=price())
+                             usdtotal=inject()[2],ethgoal=inject()[3],btc=btcscan(),btcusd=btcusd(),ethusd=price(),
+                             calc=inject()[4])
     return output
 
 
