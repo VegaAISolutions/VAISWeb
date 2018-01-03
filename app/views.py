@@ -137,7 +137,9 @@ def inject():
     usdtotal = 600000
     usd = int(eth) * price()
 
-    calc = (600000 - (eth * ask + btcscan() * btcusd())) / ask
+
+    _ethprice = price()
+    calc = (600000 - (eth * _ethprice + btcscan() * btcusd())) / _ethprice
     tround = ("%.4f" % calc)
     return [eth,usd,usdtotal,ask,tround]
 
