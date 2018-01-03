@@ -14,6 +14,9 @@
             <a class="t2"
                href="https://etherscan.io/address/0x7ee3032a81c998c9f38de324e848f187722e3edf#">
               <h1>ETH Raised: {{ eth }}</h1></a>
+             <a class="t3"
+               href="https://blockchain.info/address/1JzJ3fRq82DRnqN5psxT2rKeFQuiXXtkRV">
+              <h1>BTC Raised: {{ btc }}</h1></a>
          <p>&nbsp;</p><!-- Countdown -->
             <div align="center"><h2>Crowdfund Ends:</h2></div>
             <div class="countdown text-success text-center text-primary" id="countdown">06 weeks 05 days 10:25:38</div>
@@ -153,6 +156,7 @@
 $(document).ready(function () {
     $('.t1').tooltip({title: "USD VALUE: {{ usdtotal }}", trigger: "hover"});
     $('.t2').tooltip({title: "USD VALUE: {{ usd|round(2) }}", trigger: "hover"});
+    $('.t3').tooltip({title: "USD VALUE: {{ (btcusd * btc)|round(2) }}", trigger: "hover"});
     $('#countdown').countdown('2018/01/07', function(event) {
     $(this).html(event.strftime('%w Weeks %d Days %H:%M:%S'));
     });

@@ -11,6 +11,8 @@ from html.parser import HTMLParser
 from app import app
 from etherscan.accounts import Account
 from etherscan.stats import Stats
+import blockchain
+
 
 ### Give darrel a hand ###
 app.config['SECRET_KEY'] = 'Everything in the world is either a potato, or not a potato.'
@@ -30,12 +32,19 @@ def price():
     last_price = api.get_ether_last_price()
     return float(last_price['ethusd'])
 
+def btcusd():
+    last = requests.get('https://blockchain.info/q/24hrprice')
+    return float(last.text)
+
 
 def scan():
     api = Account(address=eth_addy, api_key=etherscan_key)
     balance = api.get_balance()
     return int(balance[:-15]) / 1000
 
+def btcscan():
+    balance = requests.get('https://blockchain.info/q/addressbalance/1JzJ3fRq82DRnqN5psxT2rKeFQuiXXtkRV')
+    return int(balance.text) / 100000000
 
 class MLStripper(HTMLParser):
     def __init__(self):
@@ -132,7 +141,7 @@ def inject():
 @app.route('/crowdfund')
 def crowdfund():
     output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],
-                             usdtotal=inject()[2],ethgoal=inject()[3])
+                             usdtotal=inject()[2],ethgoal=inject()[3],btc=btcscan(),btcusd=btcusd())
     return output
 
 
