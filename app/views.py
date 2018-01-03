@@ -141,7 +141,7 @@ def inject():
 @app.route('/crowdfund')
 def crowdfund():
     output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],
-                             usdtotal=inject()[2],ethgoal=inject()[3],btc=btcscan(),btcusd=btcusd())
+                             usdtotal=inject()[2],ethgoal=inject()[3],btc=btcscan(),btcusd=btcusd(),ethusd=price())
     return output
 
 
