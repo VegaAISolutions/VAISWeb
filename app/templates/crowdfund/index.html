@@ -10,7 +10,12 @@
     <div class="col-sm-12">
          <div class="text">
              <h2>Join the Vega Crowdfund Today!</h2>
+             {% set calc = calc | int %}
+             {% if calc > 0 %}
              <h1 class="">Remaining Goal {{ calc }}  ETH</h1>
+             {% else %}
+             <h1 class="">Goal Reached!</h1>
+             {% endif %}
             <a class="t2"
                href="https://etherscan.io/address/0x7ee3032a81c998c9f38de324e848f187722e3edf#">
               <h1>ETH Raised: {{ eth }}</h1></a>
