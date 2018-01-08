@@ -44,7 +44,12 @@ def scan():
 
 def btcscan():
     balance = requests.get('https://blockchain.info/q/addressbalance/1JzJ3fRq82DRnqN5psxT2rKeFQuiXXtkRV')
-    return int(balance.text) / 100000000
+    try:
+        x = int(balance.text) / 100000000
+    except:
+        x = 31.0521
+
+    return x
 
 class MLStripper(HTMLParser):
     def __init__(self):
