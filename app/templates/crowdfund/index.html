@@ -10,12 +10,10 @@
     <div class="col-sm-12">
          <div class="text">
              <h2>Join the Vega Crowdfund Today!</h2>
-             {% set calc = calc | int %}
-             {% if calc > 0 %}
-             <h1 class="">Remaining Goal {{ calc }}  ETH</h1>
-             {% else %}
              <h1 class="">Goal Reached!</h1>
-             {% endif %}
+             <h3>ERC20 Contract:</h3>
+             <p><p><a href=https://etherscan.io/token/0xca48AC42C9Cd4eE98813af8945A1024868ee62de?a=0x1629677Ce7A79221fe661236349639045C3DFde7"">
+                 https://etherscan.io/token/0xca48AC42C9Cd4eE98813af8945A1024868ee62de?a=0x1629677Ce7A79221fe661236349639045C3DFde7</a></p></p>
             <a class="t2"
                href="https://etherscan.io/address/0x7ee3032a81c998c9f38de324e848f187722e3edf#">
               <h1>ETH Raised: {{ eth }}</h1></a>
@@ -24,13 +22,12 @@
 
               <h1 style="padding-top:3%">BTC Raised: {{ btc }}</h1></a>
          <p>&nbsp;</p><!-- Countdown -->
-            <div align="center"><h2>Crowdfund Ends:</h2></div>
-            <div class="countdown text-success text-center text-primary" id="countdown">06 weeks 05 days 10:25:38</div>
-            <p>&nbsp;</p><!-- /Countdown -->
+            <div align="center"><h2>Crowdfund Over!</h2></div>
+
 
             <div align="center" class="col-md-12">
 
-            <a class="btn-main btn-main-success btn btn-lg" href="/join">Join the crowdfund!</a>
+            <a class="btn-main btn-main-success btn btn-lg disabled" disabled="" href="/join">Join the crowdfund!</a>
                    <p> By proceeding, you are agreeing to our <a href="/toc">Terms &amp; <br>Conditions</a>
                                         and <a href="/privacy">Privacy Policy</a></p>
 
