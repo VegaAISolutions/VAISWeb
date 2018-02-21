@@ -99,5 +99,6 @@ or if your deploying with docker via port 80
 ```
 sh update-docker.sh
 ```
-
+sudo -s
+update-vaisw
 Note: these coud probabably be used as a first time deployment method too (untested)
