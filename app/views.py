@@ -150,10 +150,9 @@ def inject():
 
 @app.route('/crowdfund')
 def crowdfund():
-    output = render_template('crowdfund/index.html', eth=inject()[0],usd=inject()[1],
-                             usdtotal=inject()[2],ethgoal=inject()[3],btc=btcscan(),btcusd=btcusd(),ethusd=price(),
-                             calc=inject()[4])
-    return output
+    output = render_template('index/index.html', medium=medium, twitter=twitter, youtube=youtube,
+                             soundcloud=soundcloud, strip_tags=strip_tags)
+    return redirect("http://vegais.com/", code=301)
 
 
 @app.route('/whitepaper')
