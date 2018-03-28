@@ -2072,3 +2072,12 @@ iframe {
     background: transparent;
     color: #222;
 }
+
+.social li {
+    margin-left: 10px;
+    margin-top: 18px;
+}
+
+ul#social li {
+    display:inline;
+}
