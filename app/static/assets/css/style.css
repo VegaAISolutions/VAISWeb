@@ -2076,6 +2076,10 @@ iframe {
 .social li {
     margin-left: 10px;
     margin-top: 18px;
+
+}
+.social a{
+     color:#FFFFFF;
 }
 
 ul#social li {
